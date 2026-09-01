@@ -22,7 +22,7 @@ We'd love to feature your icons in this pack:
 
 1. **Fork** this repository.
 2. Add each source icon as `submissions/<name>.svg`. SVG is the only accepted
-   submission format, and each file must be no larger than 700KB.
+   submission format, and each file must be no larger than 10MB.
 3. Open a pull request with your submission and include the following metadata in your PR description:
 ```json
 {
@@ -73,6 +73,6 @@ All icons in this pack are contributed by community members. Rights belong to th
 
 <div align="center">
 
-Made with ❤️ by the **SnapTune Community**
+Made with ❤️ by the **Farhan Ansari**
 
 </div>
