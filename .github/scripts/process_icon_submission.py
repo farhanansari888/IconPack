@@ -19,7 +19,7 @@ METADATA_END = "<!-- ICON_METADATA_END -->"
 REQUIRED_FIELDS = ("name", "author", "file")
 ALLOWED_FIELDS = frozenset((*REQUIRED_FIELDS, "link"))
 SVG_NAMESPACE = "http://www.w3.org/2000/svg"
-MAX_SVG_BYTES = 700_000
+MAX_SVG_BYTES = 10_000_000
 SVG_DOCTYPE_PATTERN = re.compile(
     rb"<!DOCTYPE\s+svg(?:\s+(?:PUBLIC|SYSTEM)\s+"
     rb"(?:\"[^\"]*\"|'[^']*')"
