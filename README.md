@@ -73,6 +73,6 @@ All icons in this pack are contributed by community members. Rights belong to th
 
 <div align="center">
 
-Made with ❤️ by the **Farhan Ansari**
+Made with ❤️ by **Farhan Ansari**
 
 </div>

@@ -24,7 +24,7 @@ def parse_args() -> argparse.Namespace:
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     generate = subparsers.add_parser("generate")
-    generate.add_argument("--base-sha", required=True)
+    generate.add_argument("--base-sha")
     generate.add_argument("--metadata", type=Path, required=True)
     generate.add_argument("--svg-directory", type=Path, required=True)
     generate.add_argument("--output-directory", type=Path, required=True)
@@ -104,15 +104,19 @@ def generate_previews(args: argparse.Namespace) -> None:
     if not args.renderer.is_file():
         raise PreviewError(f"Renderer not found at {args.renderer}.")
     metadata = read_metadata(args.metadata)
-    base_ids = {
-        entry_identifier(entry)
-        for entry in read_base_metadata(args.base_sha)
-    }
-    generated_entries = [
-        entry
-        for entry in metadata
-        if entry_identifier(entry) not in base_ids
-    ]
+    if args.base_sha:
+        base_ids = {
+            entry_identifier(entry)
+            for entry in read_base_metadata(args.base_sha)
+        }
+        generated_entries = [
+            entry
+            for entry in metadata
+            if entry_identifier(entry) not in base_ids
+        ]
+    else:
+        generated_entries = metadata
+
     args.output_directory.mkdir(parents=True, exist_ok=True)
     manifest: list[dict[str, str]] = []
 

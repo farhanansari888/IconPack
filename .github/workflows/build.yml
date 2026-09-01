@@ -176,6 +176,20 @@ jobs:
             --mode rebuild \
             --random-digits 6
 
+      - name: Install vector preview renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes librsvg2-bin
+
+      - name: Render SVG previews
+        run: |
+          python3 .github/scripts/icon_preview.py generate \
+            --metadata metadata.json \
+            --svg-directory svg \
+            --output-directory previews \
+            --manifest /tmp/icon-preview-manifest.json \
+            --renderer /usr/bin/rsvg-convert
+
       - name: Commit reconciled icon pack
         env:
           ICON_PACK_PAT: ${{ secrets.ICON_PACK_PAT }}
@@ -195,7 +209,7 @@ jobs:
 
           git config user.name "$pat_login"
           git config user.email "${pat_id}+${pat_login}@users.noreply.github.com"
-          git add metadata.json svg submissions
+          git add metadata.json svg submissions previews
           git commit -m "build(icon-pack): reconcile SVG icons"
           git remote set-url origin "https://x-access-token:${ICON_PACK_PAT}@github.com/${GITHUB_REPOSITORY}.git"
           git push origin "HEAD:${TARGET_BRANCH}"
